@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美浜町の紹介</title>
+    <!-- 丸くてかわいいフォント（Google Fonts）を読み込みます -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           かわいいデザインのスタイル（CSS）
+           ========================================= */
+        :root {
+            /* 元の style.css の色をベースにしています */
+            --bg-color: #FFFCDB; /* body */
+            --h1-color: #CCFFCC; /* h1 */
+            --h2-color: #f5d4f5; /* h2 */
+            --text-color: #6d597a;
+            --btn-color: #ffb3c6;
+            --btn-hover: #ff99b3;
+        }
+
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* 背景をかわいい水玉模様に */
+            background-color: var(--bg-color);
+            background-image: radial-gradient(white 20%, transparent 20%),
+                              radial-gradient(white 20%, transparent 20%);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        /* ページの切り替えアニメーション */
+        .page {
+            display: none;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h1 {
+            background-color: var(--h1-color);
+            padding: 10px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 2px 4px 0px rgba(0,0,0,0.05);
+            font-size: 1.6em;
+            margin-top: 0;
+        }
+
+        h2 {
+            background-color: var(--h2-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 2px 4px 0px rgba(0,0,0,0.05);
+            font-size: 1.3em;
+        }
+
+        /* ボタンのデザイン */
+        .menu-btn, .back-btn {
+            display: block;
+            width: 90%;
+            margin: 20px auto;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background-color: var(--btn-color);
+            color: white;
+            font-size: 1.1em;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 179, 198, 0.4);
+        }
+        
+        .menu-btn:hover, .back-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(255, 179, 198, 0.6);
+        }
+
+        .back-btn {
+            background-color: #a2d2ff;
+            box-shadow: 0 5px 15px rgba(162, 210, 255, 0.4);
+        }
+        .back-btn:hover {
+            background-color: #8cc4ff;
+            box-shadow: 0 8px 20px rgba(162, 210, 255, 0.6);
+        }
+
+        /* 画像の枠 */
+        .image-frame {
+            margin: 25px auto;
+            width: 300px;
+            height: 200px;
+            position: relative;
+            z-index: 10;
+        }
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 6px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* 時計のカード */
+        .clock-card {
+            background: #fff0f3;
+            border-radius: 20px;
+            padding: 15px;
+            margin-top: 30px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+            font-weight: bold;
+            color: #ff8fab;
+            border: 2px dashed #ffb3c6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- =========================================
+         表紙（top.html に相当）
+         ========================================= -->
+    <div id="page-top" class="page active">
+        <h1>🌸 美浜町の紹介 🌸</h1>
+        <p>このページは、美浜町の紹介をします✨</p>
+        
+        <div class="menu">
+            <!-- リンクの代わりにボタンでページを切り替えます -->
+            <button class="menu-btn" onclick="nav('page1')">🏫 日本福祉大学付属高等学校</button>
+            <button class="menu-btn" onclick="nav('page2')">🦐 えびせんべいの里 美浜本店</button>
+        </div>
+        
+        <div class="clock-card">
+            <p id="time">現在時刻 を計算中...</p>
+        </div>
+    </div>
+
+    <!-- =========================================
+         ページ1（page1.html に相当）
+         ========================================= -->
+    <div id="page-page1" class="page">
+        <h2>🏫 日本福祉大学付属高等学校</h2>
+        <div class="image-frame">
+            <img id="image-slider" src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=400&q=80" alt="学校の画像">
+        </div>
+        <p>緑に囲まれた自然豊かな学校です🌿</p>
+        <button class="back-btn" onclick="nav('top')">🏠 表紙に戻る</button>
+    </div>
+
+    <!-- =========================================
+         ページ2（page2.html に相当）
+         ========================================= -->
+    <div id="page-page2" class="page">
+        <h2>🦐 えびせんべいの里 美浜本店</h2>
+        <div class="image-frame">
+            <!-- imgタグのidを"image"から"image-hover"に変更して衝突を防ぎました -->
+            <img id="image-hover" src="./img/ebisen.jpg" alt="えびせんべいの里の画像">
+        </div>
+        <p>2026年6月に産直市場ができました！ぜひ来てね！🛍️</p>
+        <button class="back-btn" onclick="nav('top')">🏠 表紙に戻る</button>
+    </div>
+</div>
+
+<!-- =========================================
+     JavaScript（動作のプログラム）
+     ========================================= -->
+<script>
+    // 🌸 画面を切り替えるプログラム
+    function nav(targetId) {
+        // 全てのページを非表示にする
+        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+        // ターゲットのページだけ表示する
+        document.getElementById('page-' + targetId).classList.add('active');
+    }
+
+
+    // 🌸 script1.js（現在時刻）のプログラム
+    function recalc() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const date = now.getDate();
+        // 見栄えを良くするため、1桁の数字には '0' を付けます（例：9分 → 09分）
+        const hour = String(now.getHours()).padStart(2, '0');
+        const min = String(now.getMinutes()).padStart(2, '0');
+        const sec = String(now.getSeconds()).padStart(2, '0');
+        
+        const output = `現在時刻 ${year}年${month + 1}月${date}日 ${hour}時${min}分${sec}秒`;
+        document.getElementById('time').textContent = output;
+        setTimeout(recalc, 1000);
+    }
+    recalc();
+
+
+    // 🌸 script2.js（スライドショー）のプログラム
+    // ※ ここでプレビューできるようにインターネット上のサンプル画像を使っています。
+    // ※ 自分のパソコン（ローカル）で使う時は、下の album の中身を
+    //    './img/image1.jpg', './img/image2.jpg'... に変更してくださいね。
+    let album = [
+        './img/image1.jpg', './img/image2.jpg','./img/image3.jpg', './img/image4.jpg'
+    ];
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function showAlbumLoop() {
+      while (true) {
+        for (let photo of album) {
+          // 自分の画像を使う時は './img/' + photo などのようにパスを調整してください。
+          document.getElementById('image-slider').setAttribute('src', photo);
+          await sleep(1500);  // 切り替わりを少しゆっくり（1.5秒）にしました
+        }
+      }
+    }
+    showAlbumLoop();
+
+
+    // 🌸 script3.js（マウスを乗せると大きくなる）のプログラム
+    const box = document.getElementById('image-hover');
+    // scale(2) だと画面からはみ出しすぎるため、scale(1.3) で可愛くはみ出るように調整しました
+    box.addEventListener('mouseover', () => { box.style.transform = 'scale(1.3)' });
+    box.addEventListener('mouseout', () => { box.style.transform = 'scale(1)' });
+
+</script>
+
+</body>
+</html>
